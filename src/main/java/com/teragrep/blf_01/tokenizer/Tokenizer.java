@@ -56,10 +56,6 @@ public final class Tokenizer {
 
         HashSet<String> tokenSet = new HashSet<>(Arrays.asList(tokens));
 
-        for (String token : tokens) {
-            tokenSet.addAll(Arrays.asList(SubTokenSplit.split(token)));
-        }
-
         return tokenSet;
     }
 }

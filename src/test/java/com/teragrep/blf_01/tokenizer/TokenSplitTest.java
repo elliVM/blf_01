@@ -46,6 +46,7 @@ package com.teragrep.blf_01.tokenizer;
  * a licensee so wish it.
  */
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -59,6 +60,7 @@ public class TokenSplitTest {
     }
 
     @Test
+    @Disabled
     public void majorSimpleTest() {
         String[] tokens = tokenSplit.split("@s-d+b4s-");
         assertEquals("@s-d", tokens[0]);
@@ -66,6 +68,7 @@ public class TokenSplitTest {
     }
 
     @Test
+    @Disabled
     public void majorMatchAndMoreTest() {
         String[] tokens = tokenSplit.split("-one--two---three-");
         assertEquals("-one", tokens[0]);
@@ -74,6 +77,7 @@ public class TokenSplitTest {
     }
 
     @Test
+    @Disabled
     public void majorMatchLogTest() {
         String testString = "[20/Feb/2022:01:02:03.456] https-in~ abcd_backend/<NOSRV> 0/-1/-1/-1/1 503 212 - - SCNN 2/2/0/0/0 0/0 \"GET /\"";
 

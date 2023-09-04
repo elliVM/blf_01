@@ -49,7 +49,7 @@ package com.teragrep.blf_01.tokenizer;
 import java.util.regex.Pattern;
 
 public  final  class TokenSplit {
-    private static final String regex = "(\\t|\\n|\\r| |\\!|\\\"|%0A|%20|%21|%2520|%2526|%26|%28|%29|%2B|%2C|%3A|%3B|%3D|%5B|%5D|%7C|&|\\'|\\(|\\)|\\*|\\+|,|--|;|<|>|\\?|\\[|\\]|\\{|\\||\\})";;
+    private static final String regex = "(\\t|\\n|\\r| |\\!|\\\"|%0A|%20|%21|%2520|%2526|%26|%28|%29|%2B|%2C|%3A|%3B|%3D|%5B|%5D|%7C|&|\\'|\\(|\\)|\\*|\\+|,|--|;|<|>|\\?|\\[|\\]|\\{|\\||\\})|#|\\$|%|-|\\.|/|:|=|@|\\\\|_";;
     private static final Pattern compiledRegex = Pattern.compile(regex);;
 
 

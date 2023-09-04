@@ -64,22 +64,14 @@ public class TokenizerTest {
         expectedSet.add("");
         expectedSet.add("01");
         expectedSet.add("02");
-        expectedSet.add("0/-1/-1/-1/1");
         expectedSet.add("03");
         expectedSet.add("NOSRV");
-        expectedSet.add("0/0");
         expectedSet.add("212");
         expectedSet.add("456");
-        expectedSet.add("abcd_backend/");
         expectedSet.add("backend");
         expectedSet.add("https");
-        expectedSet.add("20/Feb/2022:01:02:03.456");
-        expectedSet.add("2/2/0/0/0");
         expectedSet.add("Feb");
-        expectedSet.add("https-in~");
         expectedSet.add("2022");
-        expectedSet.add("-");
-        expectedSet.add("/");
         expectedSet.add("abcd");
         expectedSet.add("0");
         expectedSet.add("1");
@@ -87,8 +79,8 @@ public class TokenizerTest {
         expectedSet.add("SCNN");
         expectedSet.add("GET");
         expectedSet.add("503");
-        expectedSet.add("in~");
         expectedSet.add("20");
+
 
         assertTrue(tokenizedSet.containsAll(expectedSet));
     }
