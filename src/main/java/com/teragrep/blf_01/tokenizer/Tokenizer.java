@@ -52,9 +52,13 @@ import java.util.HashSet;
 public final class Tokenizer {
 
     public static HashSet<String> tokenize(String input) {
+        String[] overlaps = OverlapTokenFinder.find(input);
         String[] tokens = TokenSplit.split(input);
 
+        HashSet<String> overlapSet = new HashSet<>(Arrays.asList(overlaps));
         HashSet<String> tokenSet = new HashSet<>(Arrays.asList(tokens));
+
+        tokenSet.addAll(overlapSet);
 
         for (String token : tokens) {
             tokenSet.addAll(Arrays.asList(SubTokenSplit.split(token)));

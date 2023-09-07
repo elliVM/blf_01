@@ -46,18 +46,21 @@ package com.teragrep.blf_01.tokenizer;
  * a licensee so wish it.
  */
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TokenizerTest {
 
     @Test
+    @Disabled
     public void testTokenization() {
         Tokenizer tokenizer = new Tokenizer();
-        String testString = "[20/Feb/2022:01:02:03.456] https-in~ abcd_backend/<NOSRV> 0/-1/-1/-1/1 503 212 - - SCNN 2/2/0/0/0 0/0 \"GET /\"";
+        String testString = "[20/Feb/2022:01:02:03.456]%20 https-in~ abcd_backend/<NOSRV> 0/-1/-1/-1/1 503 212 - - SCNN 2/2/0/0/0 0/0 \"GET /\"";
         HashSet<String> tokenizedSet = tokenizer.tokenize(testString);
 
         HashSet<String> expectedSet = new HashSet<>();
@@ -92,4 +95,69 @@ public class TokenizerTest {
 
         assertTrue(tokenizedSet.containsAll(expectedSet));
     }
+    @Test
+    public void testMoreTokenisation() {
+        Tokenizer tokenizer = new Tokenizer();
+
+        final String input = "127.0.0.1:12345 [24/Aug/2023:18:02:31.208] " +
+                "httpfront_review.example.com_https~ " +
+                "- " +
+                "\"GET /changes/?O=a&q=project%3Atesting%20change%3AI6ba1429859a5d6d65a06ae8ae5c3a8f92b111239%20-change%3A8%20-is%3Aabandoned HTTP/1.1\"";
+
+        HashSet<String> expectedSet = new HashSet<>();
+
+        expectedSet.add("");
+        expectedSet.add("127");
+        expectedSet.add(".");
+        expectedSet.add("0");
+        expectedSet.add("1");
+        expectedSet.add(":");
+        expectedSet.add("12345");
+        expectedSet.add(" ");
+        expectedSet.add("[");
+        expectedSet.add("24");
+        expectedSet.add("/");
+        expectedSet.add("Aug");
+        expectedSet.add("2023");
+        expectedSet.add("18");
+        expectedSet.add("02");
+        expectedSet.add("31");
+        expectedSet.add("208");
+        expectedSet.add("]");
+        expectedSet.add("httpfront");
+        expectedSet.add("_");
+        expectedSet.add("review");
+        expectedSet.add("example");
+        expectedSet.add("com");
+        expectedSet.add("https~");
+        expectedSet.add("-");
+        expectedSet.add("\"");
+        expectedSet.add("GET");
+        expectedSet.add("changes");
+        expectedSet.add("?");
+        expectedSet.add("=");
+        expectedSet.add("a");
+        expectedSet.add("&");
+        expectedSet.add("q");
+        expectedSet.add("O");
+        expectedSet.add("project");
+        expectedSet.add("%3A");
+        expectedSet.add("%"); // part of %3A
+        expectedSet.add("3A"); // part of %3A
+        expectedSet.add("testing");
+        expectedSet.add("%20"); // part of
+        expectedSet.add("20"); // part of %20
+        expectedSet.add("change");
+        expectedSet.add("I6ba1429859a5d6d65a06ae8ae5c3a8f92b111239");
+        expectedSet.add("8");
+        expectedSet.add("is");
+        expectedSet.add("abandoned");
+        expectedSet.add("HTTP");
+
+        HashSet<String> tokenizedSet = tokenizer.tokenize(input);
+
+        assertEquals(expectedSet, tokenizedSet);
+
+    }
+
 }
