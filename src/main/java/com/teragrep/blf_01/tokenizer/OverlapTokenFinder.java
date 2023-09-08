@@ -21,6 +21,7 @@ public final class OverlapTokenFinder {
                 tokens.add(sb.toString());
 
                 for (int j = i+1; j < input.length(); j++) {
+                    sb.append(input.charAt(j));
 
                     // add pattern match
                     if (regexMatch(sb.toString()) && (j > i+1)) {
@@ -35,8 +36,6 @@ public final class OverlapTokenFinder {
                         sb.setLength(0);
                         break;
                     }
-
-                    sb.append(input.charAt(j));
                 }
             }
         }

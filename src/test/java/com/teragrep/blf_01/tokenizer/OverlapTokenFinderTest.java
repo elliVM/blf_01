@@ -14,7 +14,7 @@ public class OverlapTokenFinderTest {
     public void findTokensTest() {
         OverlapTokenFinder finder = new OverlapTokenFinder();
 
-        String input = "%20_afs.%25260/df%3A\"";
+        String input = "%20_afs.%25260/df%3A";
 
         Set<String> tokenSet = new HashSet<>(Arrays.asList(finder.find(input)));
         HashSet<String> expectedSet = new HashSet<>();
