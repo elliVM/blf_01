@@ -24,6 +24,10 @@ public class OverlapTokenFinderTest {
         expectedSet.add("3A");
         expectedSet.add("%2526");
         expectedSet.add("2526");
+        expectedSet.add(".");
+        expectedSet.add("_");
+        expectedSet.add("/");
+        expectedSet.add("%");
 
         assertEquals(expectedSet, tokenSet);
 
