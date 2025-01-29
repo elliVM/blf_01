@@ -1,13 +1,18 @@
-= BLF_01
+= BLF_01: Teragrep Tokenizer for Large Inputs
 
-Tokenizer used to split extremely large inputs into major and minor tokens with pre-set delimiters (splitters)
+The Teragrep Tokenizer efficiently splits large input streams into major and minor tokens using configurable delimiters (splitters).
+It supports the generation of permutations from major tokens and applies entanglement for enhanced token handling.
+The tokenizer is designed to handle large-scale data, allowing the configuration of token limits and delimiter patterns.
 
 == Features
 
 * Fast tokenization of large inputs
-* Tokenization splits input into major and minor tokens
-* Permutations are generated from major tokens
-* Configurable delimiters for major and minor tokens (character or pattern)
+* Splits input into *major* and *minor* tokens, providing flexibility in data processing.
+* Can generate permutations from *major* tokens.
+* Configurable delimiters for both major and minor tokens, supporting character-based or pattern-based delimiters.
+* **Bidirectional token handling**:
+Uses entanglement to process tokens in both forward and reverse directions,
+concatenating related tokens for enhanced context and more efficient analysis.
 
 == Documentation
 
@@ -21,10 +26,43 @@ Expects InputStream as input for tokenization.
 
 == How to [compile/use/implement]
 
-See tests for how to implement.
+To use the **Tokenizer**, follow the steps below:
 
-Import the Tokenizer class.
+**Import the Tokenizer Class**
+First, import the `Tokenizer` class into your project.
 
+**Create an Instance of Tokenizer**
+You can create an instance of the `Tokenizer` class and specify the maximum number of tokens if needed.
+If no number is specified, the default value of `Long.MAX_VALUE` will be used.
+If set to 0, only major tokens are generated.
+Example:
+
+[source]
+----
+Tokenizer tokenizer = new Tokenizer();  // default token count limit
+// OR
+Tokenizer tokenizer = new Tokenizer(1000);  // set max token count to 1000
+// OR
+Tokernizer tokenizer = new Tokenizer(0); // only major tokens
+----
+
+**Tokenize an Input Stream**
+
+Once you've created an instance of the `Tokenizer`, you can tokenize an `InputStream`.
+The `tokenize()` method will return a list of `Token` objects that you can use for further processing.
+
+[source]
+----
+InputStream inputStream = new FileInputStream("path/to/file"); // input stream (example from a file)
+
+List<Token> tokens = tokenizer.tokenize(inputStream); // tokenize the input stream
+
+// process tokens (example with a for loop)
+for (Token token : tokens) {
+System.out.println("Token: " + token);
+}
+
+----
 == Contributing
 
 You can involve yourself with our project by https://github.com/teragrep/blf_01/issues/new/choose[opening an issue] or submitting a pull request.
@@ -42,4 +80,5 @@ Read more in our https://github.com/teragrep/teragrep/blob/main/contributing.ado
 
 Contributors must sign https://github.com/teragrep/teragrep/blob/main/cla.adoc[Teragrep Contributor License Agreement] before a pull request is accepted to organization's repositories.
 
-You need to submit the CLA only once. After submitting the CLA you can contribute to all Teragrep's repositories.
+You need to submit the CLA only once.
+After submitting the CLA you can contribute to all Teragrep's repositories.
