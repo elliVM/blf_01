@@ -80,5 +80,4 @@ Read more in our https://github.com/teragrep/teragrep/blob/main/contributing.ado
 
 Contributors must sign https://github.com/teragrep/teragrep/blob/main/cla.adoc[Teragrep Contributor License Agreement] before a pull request is accepted to organization's repositories.
 
-You need to submit the CLA only once.
-After submitting the CLA you can contribute to all Teragrep's repositories.
+You need to submit the CLA only once. After submitting the CLA you can contribute to all Teragrep's repositories.
