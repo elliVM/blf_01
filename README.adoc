@@ -18,11 +18,12 @@ See the official documentation on https://docs.teragrep.com[docs.teragrep.com].
 
 == Limitations
 
-- Java 8
+- Compiles to Java 8 bytecode; Java 8 is the minimum required runtime version.
+- Verified to build and run with JDK 11 and JDK 17. Compatibility with other Java versions has not been verified.
 
 == How to Use in Code
 
-1. First, add the BLF_01 dependency to your project's build file (Apache Maven or Gradle).
+1. First, add the BLF_01 dependency to your project's Maven POM or Gradle build file.
 2. Pass an InputStream to the tokenizer to retrieve a list of all major and minor tokens:
 +
 [source]
