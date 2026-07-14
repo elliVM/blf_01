@@ -8,7 +8,7 @@ By generating nested minor tokens for each major token, BLF_01 enables highly ac
 For input `[20/Feb/2022:03.456]`
 
 - Generated major tokens: `[`, `20/Feb/2022:03.456`, `]`
-- Generated minor tokens for the major token `20/Feb/2022:03.456`: `20`, `Feb`, `2022`, `03`, `456`, `/`, `:`, `.`, and all possible permutations such as `20/Feb`, `20/Feb/2022`.
+- Generated minor tokens for the major token `20/Feb/2022:03.456`: `20`, `Feb`, `2022`, `03`, `456`, `/`, `:`, `.`, and all possible permutations, such as `20/Feb`, `20/Feb/2022`.
 
 Note: You can see the major and minor token splitters in `MajorDelimiters` and `MinorDelimiter` classes.
 
