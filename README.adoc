@@ -3,12 +3,12 @@
 BLF_01 is a high-performance Java library designed to split extremely large inputs into hierarchical lexical tokens (major and minor) using configurable delimiters.
 By generating nested minor tokens for each major token, BLF_01 enables highly accurate pattern matching and deep analysis of unstructured data.
 
-=== Example of Tokenization
+== Example of Tokenization
 
 For input `[20/Feb/2022:03.456]`
 
 - Generated major tokens: `[`, `20/Feb/2022:03.456`, `]`
-- Generated minor tokens for major token `20/Feb/2022:03.456` -> `20`, `Feb`, `2022`,`03`, `456`, `/`, `:`, `.` and all possible permutations like `20/Feb`, `20/Feb/2022` etc.
+- Generated minor tokens for the major token `20/Feb/2022:03.456` -> `20`, `Feb`, `2022`,`03`, `456`, `/`, `:`, `.`, and all possible permutations like `20/Feb`, `20/Feb/2022` etc.
 
 Note: You can see the major and minor token splitters in `MajorDelimiters` and `MinorDelimiter` classes.
 
@@ -20,31 +20,33 @@ See the official documentation on https://docs.teragrep.com[docs.teragrep.com].
 
 - Java 8
 
-== How to
+== How to Use in Code
 
-1. First, add the BLF_01 dependency to your project's build file (Maven/Gradle).
-
+1. First, add the BLF_01 dependency to your project's build file (Apache Maven or Gradle).
 2. Pass an InputStream to the tokenizer to retrieve a list of all major and minor tokens:
-
-```
++
+[source]
+----
 import com.teragrep.blf_01.Tokenizer;
 import com.teragrep.blf_01.Token;
 
 Tokenizer tokenizer = new Tokenizer();
 List<Token> tokens = tokenizer.tokenize(inputStream);
-```
-
+----
++
 To prevent performance bottlenecks on massive inputs, you can cap the number of generated minor tokens per major token:
-
-```
++
+[source]
+----
 Tokenizer tokenizer = new Tokenizer(10L);
-```
-
+----
++
 If you only need the major tokens, you can disable minor token generation entirely:
-
-```
++
+[source]
+----
 Tokenizer tokenizer = new Tokenizer(0L);
-```
+----
 
 == Contributing
 
