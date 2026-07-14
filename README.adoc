@@ -1,13 +1,16 @@
-= BLF_01
+= BLF_01: Tokenizer Library for Java
 
-Tokenizer used to split extremely large inputs into major and minor tokens with pre-set delimiters (splitters)
+BLF_01 is a high-performance Java library designed to split extremely large inputs into hierarchical lexical tokens (major and minor) using configurable delimiters.
+By generating nested minor tokens for each major token, BLF_01 enables highly accurate pattern matching and deep analysis of unstructured data.
 
-== Features
+=== Example of Tokenization
 
-* Fast tokenization of large inputs
-* Tokenization splits input into major and minor tokens
-* Permutations are generated from major tokens
-* Configurable delimiters for major and minor tokens (character or pattern)
+For input `[20/Feb/2022:03.456]`
+
+- Generated major tokens: `[`, `20/Feb/2022:03.456`, `]`
+- Generated minor tokens for major token `20/Feb/2022:03.456` -> `20`, `Feb`, `2022`,`03`, `456`, `/`, `:`, `.` and all possible permutations like `20/Feb`, `20/Feb/2022` etc.
+
+Note: You can see the major and minor token splitters in `MajorDelimiters` and `MinorDelimiter` classes.
 
 == Documentation
 
@@ -15,15 +18,33 @@ See the official documentation on https://docs.teragrep.com[docs.teragrep.com].
 
 == Limitations
 
-Uses Java version 1.8 other versions might not work correctly.
+- Java 8
 
-Expects InputStream as input for tokenization.
+== How to
 
-== How to [compile/use/implement]
+1. First, add the BLF_01 dependency to your project's build file (Maven/Gradle).
 
-See tests for how to implement.
+2. Pass an InputStream to the tokenizer to retrieve a list of all major and minor tokens:
 
-Import the Tokenizer class.
+```
+import com.teragrep.blf_01.Tokenizer;
+import com.teragrep.blf_01.Token;
+
+Tokenizer tokenizer = new Tokenizer();
+List<Token> tokens = tokenizer.tokenize(inputStream);
+```
+
+To prevent performance bottlenecks on massive inputs, you can cap the number of generated minor tokens per major token:
+
+```
+Tokenizer tokenizer = new Tokenizer(10L);
+```
+
+If you only need the major tokens, you can disable minor token generation entirely:
+
+```
+Tokenizer tokenizer = new Tokenizer(0L);
+```
 
 == Contributing
 
@@ -42,4 +63,5 @@ Read more in our https://github.com/teragrep/teragrep/blob/main/contributing.ado
 
 Contributors must sign https://github.com/teragrep/teragrep/blob/main/cla.adoc[Teragrep Contributor License Agreement] before a pull request is accepted to organization's repositories.
 
-You need to submit the CLA only once. After submitting the CLA you can contribute to all Teragrep's repositories.
+You need to submit the CLA only once.
+After submitting the CLA you can contribute to all Teragrep's repositories.
